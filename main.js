@@ -4,6 +4,8 @@ const electron = require("electron");
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
+const ipc = electron.ipcMain
+const dialog = electron.dialog
 
 let mainWindow = null;
 let menuTemplate = [
@@ -26,3 +28,11 @@ app.on("ready", function() {
 app.on("window-all-closed", function() {
   app.quit();
 });
+
+ipc.on('open-file-dialog', function (event) {
+  dialog.showOpenDialog({
+    properties: ['openFile', 'openDirectory']
+  }, function (files) {
+    if (files) event.sender.send('selected-directory', files)
+  })
+})
