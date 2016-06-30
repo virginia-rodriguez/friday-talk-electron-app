@@ -1,0 +1,11 @@
+{
+  "name": "friday-talk-electron-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron-prebuilt": "^1.2.5"
+  }
+}
